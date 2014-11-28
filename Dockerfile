@@ -23,10 +23,6 @@ RUN apt-get update -qq
 RUN apt-get install -y apt-utils
 RUN apt-get upgrade -qq
 
-# Create the 'mssola' user and create the home dir.
-RUN useradd -m -d /home/mssola -s /bin/bash -G users mssola
-RUN chown mssola:users /home/mssola
-
 # Install all the required packages as described in:
 # https://github.com/facebook/hhvm/wiki/Building-and-installing-HHVM-on-Debian-8
 RUN apt-get install -y git-core cmake libmysqlclient-dev \
@@ -43,8 +39,15 @@ RUN apt-get install -y git-core cmake libmysqlclient-dev \
   libboost-program-options1.55-dev libboost-filesystem1.55-dev \
   libboost-regex1.55-dev libmagickwand-dev libiberty-dev libevent-dev \
   libxslt-dev libgoogle-glog-dev automake libldap2-dev libkrb5-dev \
-  ocaml-native-compilers
+  ocaml-native-compilers sudo
 
-# Add the hhvm helper script.
+
+# Create the 'mssola' user and create the home dir.
+RUN useradd -m -d /home/mssola -s /bin/bash -G users mssola
+RUN chown mssola:users /home/mssola
+RUN adduser mssola sudo
+
+# Add the `hhvm` and the `utils` helper scripts.
 ADD hhvm.sh /home/mssola/hhvm.sh
+ADD utils.sh /home/mssola/utils.sh
 
