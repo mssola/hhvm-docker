@@ -7,7 +7,7 @@ the image [debian:jessie](https://registry.hub.docker.com/_/debian/).
 
 # Legal stuff
 
-Copyright (C) 2014 Miquel Sabaté Solà
+Copyright (C) 2014-2015 Miquel Sabaté Solà
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
